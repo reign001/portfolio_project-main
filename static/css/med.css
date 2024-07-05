@@ -1,0 +1,62 @@
+@media screen and (max-width: 480px) {
+    body {
+      background-color: lightgreen;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+    .image_div button{
+        width: 50px;
+        height: 20px;
+        padding: 2px;
+        font-size: 5px;
+        margin:auto;
+        margin-top: 10px;
+  }
+  .image_div{
+    width: 80%;
+    height: 30%;
+    /* background-color: black; */
+    display: flex;
+    flex-direction: column;
+    /* border: black 1px solid; */
+
+
+}
+
+.button_div{
+    /* background-color: green; */
+    width: 50%;
+    display: flex;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 50px;
+    justify-content: space-around;
+    padding-top: 10px;
+}
+
+button{
+    background-color: aqua;
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+    border: 0;
+    border-radius: 4px;
+    font-size: small;
+    text-wrap: wrap;
+    
+
+}
+
+.image_descriptor{
+  text-align: center;
+  margin: auto;
+  justify-content: center;
+  margin-top: 20px;
+}

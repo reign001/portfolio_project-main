@@ -1,0 +1,62 @@
+body{
+    height: 550px;
+    text-align: center;
+}
+
+.central{
+    width: 30%;
+    height: 600px;
+    margin: auto;
+    /* border: red solid 1px; */
+    padding-top: 20px;
+    background-image: linear-gradient(red, yellow);
+    display:block;
+}
+
+.button_div{
+    margin-top: 50px;
+
+    
+}
+
+.button_div button{
+    background-color: aqua;
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
+    border: 0;
+    border-radius: 4px;
+    margin: 40px;
+    padding: 20px, 20px;
+}
+
+.sign_up_artiste{
+    display: block;
+    width: 50%;
+    height: 90%;
+    margin: auto;
+    line-height: 20px;
+    border: red solid 1px;
+}
+
+.sign_up_artiste label{
+    display: none;
+}
+
+.sign_up_artiste input{
+    margin-top: 10px;
+    padding: 6px 0 6px 5px;
+    width: 300px;
+    
+}
+
+form div{
+
+    margin-top: 10px;
+}
+#button{
+    padding: 10px;
+    background-color: blueviolet;
+    color: white;
+    cursor: pointer;
+}

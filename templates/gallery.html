@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="screen.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/med.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    
+</head>
+<body>
+    <header>
+        <div class="write_up_div">
+            <div><b><i>WELCOME TO OUR GALLARY</i></b></div>
+        </div>
+        <div class="button_div">
+        </div>
+        
+    </header>
+    <section class="">
+        <div class="container">
+            <div class="image_div">
+                <div class="pencil">
+                    <img src="/static/images/pencil.jpg" alt="">
+                </div>
+                <form action={{url_for('pencil')}} method="POST">
+                <button>PENCIL ART</button>
+                </form>
+                
+            </div>
+            <div class="image_div">
+                <div class="paint">
+                    <img src="/static/images/paint.jpg" alt="">
+                </div>
+                <form action={{url_for('paint')}} method="POST">
+                <button>PAINT ART</button>
+                </form>
+            </div>
+            <div class="image_div">
+                <div class="nature">
+                    <img src="/static/images/nature.jpg" alt="">
+                </div>
+                <form action={{url_for('nature')}} method="POST">
+                <button>NATURE ART</button>
+                </form>
+            </div>
+        </div>
+        
+
+    </section>
+
+    <footer >
+            {%include "footer.html"%}
+    </footer>
+    <script src="{{url_for('static', filename='photo.js')}}"></script>
+</body>
+</html>

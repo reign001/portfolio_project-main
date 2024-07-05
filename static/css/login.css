@@ -1,0 +1,30 @@
+body{
+    text-align: center;
+    margin: auto;
+    padding: auto;
+}
+.central{
+    background-image: linear-gradient(red, yellow);
+    border: 5px solid white;
+    height: 500px;
+    width: 400px;
+    margin-left: 500px;
+}
+button{
+    padding: 10px;
+    background-color: blueviolet;
+    color: white;
+    cursor: pointer;
+}
+
+input{
+    padding: 8px;
+    background-color: blueviolet;
+    color: white;
+}
+#button{
+    padding: 10px;
+    background-color: blueviolet;
+    color: white;
+    cursor: pointer;
+}

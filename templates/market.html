@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="screen.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/med.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    
+</head>
+<body>
+    <header>
+        <div class="write_up_div">
+            <div><b><i>WELCOME TO OUR MARKET</i></b></div>
+        
+        
+    </header>
+    <section class="image_descriptor">
+        <br>
+        <br>
+        <p>Kindly note that our team of professionals will examine your image to make sure it meets our standard</p>
+        <p>This usually takes 12 to 24 hours. After which your image will be sent our gallery for possible purchase</p>
+        <form method="POST" action="{{ url_for('market') }}" validate>
+            {{ form.csrf_token }}
+            <p> {{ form.image_name.label }} <br> {{ form.image_name(size=30) }} </p>
+            <p> {{ form.image_type.label }} <br>{{ form.image_type(size=30) }} </p>
+            <p> {{form.image_description.label }}<br> {{form.image_description(size=40)}} </p>
+            <p> {{form.upload_image.label }}<br> {{form.upload_image}} </p>
+            <input type="submit" value="send image">
+    
+        </form>
+        
+
+    </section>
+
+    <footer >
+        <p>artifare@{{year}}</p>
+        <p>built by John Oloche Okpe</p>
+    </footer>
+    <script src="{{url_for('static', filename='photo.js')}}"></script>
+</body>
+</html>

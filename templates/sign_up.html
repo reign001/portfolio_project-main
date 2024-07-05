@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sign_up.css')}}">
+    <title>Sign_up</title>
+</head>
+<body>
+    {% block content %}
+    <div class="central">
+        
+        <form method="POST" action="{{ url_for('sign_up') }}" validate>
+            {{ form.csrf_token }}
+            <p> {{ form.First.label }} <br> {{ form.First(size=30) }} </p>
+            <p> {{ form.Last.label }} <br>{{ form.Last(size=30) }} </p>
+            <p> {{form.Phone.label }}<br> {{form.Phone(size=40)}} </p>
+            <p> {{form.Email.label }} <br>{{form.Email(size=40)}} </p>
+            <p> {{form.Street.label }}<br> {{form.Street(size=40)}} </p>
+            <p> {{form.City.label }} <br>{{form.City(size=40)}} </p>
+            <p> {{form.State.label }} <br>{{form.State(size=40)}} </p>
+            <p> {{form.Country.label }} <br>{{form.Country(size=40)}} </p>
+            <p> {{ form.Password.label }}<br> {{ form.Password(size=30) }} </p>
+            <input id="button" type="submit" value="create account">
+
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/landing.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    <section class="section_one">
+        <header>
+            <div class="first_div_header">
+                <p><span>A</span>RTI<span>F</span>ARE</p>
+            </div>
+            <div class="second_div_header">
+                <div>Pricing</div>
+                <div>Membership</div>
+                <div>Validity</div>
+                <div id="button_div">
+                    <form action="{{ url_for('login') }}">
+                    <button>Login</button>
+                    </form>
+                </div>
+            </div>
+        </header>
+    </section>
+    <section class="section_two">
+        <div class="other_div_section_two">
+            <h1>
+                EXPERIENCE THE BEAUTY 0F ART
+            </h1>
+            <h3>
+                BUY ART, SELL ART
+            </h3>
+        </div>
+        <div class="left_section_two">
+            <h2>Discover Art That Speaks to You!</h2>
+            <p>
+                Unleash your creativity and find unique pieces from talented artists worldwide. Whether you're looking to brighten up your space or find the perfect gift, our curated collection has something for every art lover. Explore now and bring home art that inspires!                
+            </p>
+        </div>
+        <div class="right_section_two">
+            <h2>Share Your Art with the World!</h2>
+            <p>
+                Calling all artists! Join our vibrant community and showcase your creativity. Whether you specialize in paint art, pencil art, or nature art, our platform is the perfect place to sell your masterpieces. Reach art lovers everywhere and turn your passion into profit. Sign up today and let your art shine!
+            </p>
+        </div>
+    </section>
+    <section class="section_three">
+        <div>
+            <img src="/static/images/child-with-autism-living-fantasy-world_23-2151248831.avif" alt="">
+        </div>
+        <div>
+            <img src="/static/images/front-view-woman-posing-with-flowers_23-2150725682.avif" alt="">
+        </div>
+        <div>
+            <img src="/static/images/large-pink-flower-sitting-top-tree-generative-ai_791316-21257.avif" alt="">
+        </div>
+        <div>
+            <img src="/static/images/young-woman-who-is-posing-covered-with-black-paint_155003-594.avif" alt="">
+        </div>
+
+    </section>
+    <footer class="footer">
+        <div>
+            <a href="https://www.google.com"> Privacy</a>
+            <a href="">Terms and Conditions</a>
+            <a href="">Cookie Prefernces</a>
+
+        </div>
+        <div>
+            <p>
+                ©2024 Artifare Technologies, LLC, a Sale company. All rights reserved. Various trademarks held by their respective owners
+            </p>
+        </div>
+    </footer>
+    
+</body>
+</html>

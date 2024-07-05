@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/welcome.css')}}">
+</head>
+<body>
+    <P>Welcome to <b><i>ARTIFARE</i></b></P>
+
+    <div>
+        
+        <p>what kind of user are you?</p>
+        <div>
+            <form method="GET" action="{{ url_for('gallery') }}" validate>
+                <button>Buyer</button>
+            </form>
+        </div>
+        <br>    
+        <div>
+            <form method="GET" action="{{ url_for('market') }}" validate>
+                <button>Seller</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

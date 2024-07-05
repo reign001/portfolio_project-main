@@ -1,0 +1,22 @@
+Bootstrap_Flask==2.2.0
+Requests==2.31.0
+WTForms==3.0.1
+Flask_WTF==1.2.1
+Werkzeug==3.0.0
+Flask==2.3.2
+flask_sqlalchemy==3.1.1
+SQLAlchemy==2.0.25
+Flask_Login==0.6.3
+
+
+
+# with app.app_context():
+#     result = db.session.execute(db.select(User).order_by(User.id))
+#     User_info = result.scalars()
+# with open("file.txt", "w") as file:
+#     file.write(User_info)
+
+
+{{ form.csrf_token }}
+<p> {{form.Email_Login.label }} <br>{{form.Email_Login(size=40)}} </p>
+<p> {{ form.Password_Login.label }}<br>{{ form.Password_Login(size=30) }} </p>

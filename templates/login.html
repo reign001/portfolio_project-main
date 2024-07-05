@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
+    <title>Signup/login</title>
+    
+</head>
+<body>
+    {% block content %}
+    <div class="central">
+            <div>
+                <div>
+                    <p>Welcome to artifare, your trusted ART market</p>
+                    <h3> Already have an account?</h3>
+                    <p>Login</p>
+                </div>
+                    <form method="POST" action="{{ url_for('login') }}">
+                        <input type="text" name="email_form" placeholder="Email" required="required" /></br></br>
+                        <input type="password" name="password_form" placeholder="Password" required="required"/> </br></br>
+                        <input id="button" type="submit" value="login">
+
+                    </form>
+            </div>
+            <div>
+                <h3> Dont have an account yet?</h3>
+                <p>Sign up to create account</p>
+                <form method="POST" action="{{url_for('sign_up')}}">
+                    <button>Sign up</button>
+                </form>
+            </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
