@@ -1,14 +1,14 @@
+from __future__ import annotations
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, TelField, FileField, TextAreaField
 from wtforms.validators import DataRequired
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy import Integer, String, ForeignKey
+from sqlalchemy import Integer, String, ForeignKey, LargeBinary
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
-import sqlite3
 import smtplib
 
 
@@ -33,8 +33,8 @@ db = SQLAlchemy(model_class=Base)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///ARTIFARE.db"
 db.init_app(app)
 
-class User(UserMixin, db.Model):
-    """this class defines the user table of the applications database"""
+class User(UserMixin, Base):
+    __tablename__ = "User"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     First_Name: Mapped[str] = mapped_column(String(20), nullable=False)
     Last_Name: Mapped[str] = mapped_column(String(20), nullable=False)
@@ -45,16 +45,37 @@ class User(UserMixin, db.Model):
     State: Mapped[str] = mapped_column(String(20), nullable=False)
     Country: Mapped[str] = mapped_column(String(20), nullable=False)
     Password: Mapped[str] = mapped_column(String(20), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(default=datetime.today)
+    children = relationship("Item", back_populates="user")
+    
+    
+class Item(Base):
+    __tablename__ = "Item"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    item_image:  Mapped[LargeBinary] = mapped_column(LargeBinary, nullable=False)
+    item_name: Mapped[str] = mapped_column(String(50), nullable=False)
+    item_description: Mapped[str] = mapped_column(String(300), nullable=False)
+    item_price: Mapped[int] = mapped_column(Integer, nullable=False)
+    inserted_at: Mapped[datetime] = mapped_column(default=datetime.today)
+    user_id: Mapped[int] = mapped_column(ForeignKey('User.id'))
+    parent = relationship("user", back_populates="children")
+    children = relationship("Order", back_populates="item")
+    
 
-
-# new_user = User(First_Name="ondum", Last_Name="oteikwu", Phone_Number= +2349043267567,\
-#          Email="oktvsson@gmail.com", Street="odumako street", City="otukpo",\
-#          State="benue", Country="Nigeria", Password="reign")
-
-with app.app_context():
-      db.create_all()
-#      db.session.add(new_user)
-#      db.session.commit()
+    
+class Order(Base):
+    __tablename__ = "Order"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    order_name: Mapped[str] = mapped_column(String(50), nullable=False)
+    order_price: Mapped[int] = mapped_column(Integer, nullable=False)
+    item_id: Mapped[int] = mapped_column(ForeignKey('Item.id'))
+    parent = relationship("Item", backref="children")
+    
+    
+# with app.app_context():
+#     db.create_all()
+    #   db.session.add(new_user)
+    #   db.session.commit()
 
 class SignUp_Form(FlaskForm):
     """this is a form for the signup page"""
