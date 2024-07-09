@@ -20,3 +20,44 @@ Flask_Login==0.6.3
 {{ form.csrf_token }}
 <p> {{form.Email_Login.label }} <br>{{form.Email_Login(size=40)}} </p>
 <p> {{ form.Password_Login.label }}<br>{{ form.Password_Login(size=30) }} </p>
+
+
+class User(UserMixin, Base):
+    __tablename__ = "User"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    First_Name: Mapped[str] = mapped_column(String(20), nullable=False)
+    Last_Name: Mapped[str] = mapped_column(String(20), nullable=False)
+    Phone_Number: Mapped[int] = mapped_column(Integer, unique=True, nullable=False)
+    Email: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
+    Street: Mapped[str] = mapped_column(String(20), nullable=False)
+    City: Mapped[str] = mapped_column(String(20), nullable=False)
+    State: Mapped[str] = mapped_column(String(20), nullable=False)
+    Country: Mapped[str] = mapped_column(String(20), nullable=False)
+    Password: Mapped[str] = mapped_column(String(20), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(default=datetime.today)
+    children = relationship("Item", back_populates="parent")
+    
+    
+class Item(Base):
+    __tablename__ = "Item"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    item_image:  Mapped[LargeBinary] = mapped_column(LargeBinary, nullable=False)
+    item_name: Mapped[str] = mapped_column(String(50), nullable=False)
+    item_description: Mapped[str] = mapped_column(String(300), nullable=False)
+    item_price: Mapped[int] = mapped_column(Integer, nullable=False)
+    inserted_at: Mapped[datetime] = mapped_column(default=datetime.today)
+    user_id: Mapped[int] = mapped_column(ForeignKey('User.id'))
+    parent = relationship("User", back_populates="children")
+    children = relationship("Order", back_populates="parent")
+    
+
+    
+class Order(Base):
+    __tablename__ = "Order"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    order_name: Mapped[str] = mapped_column(String(50), nullable=False)
+    order_price: Mapped[int] = mapped_column(Integer, nullable=False)
+    user_id: Mapped[int] = mapped_column(ForeignKey('User.id'))
+    item_id: Mapped[int] = mapped_column(ForeignKey('Item.id'))
+    parent = relationship("User", backref="children")
+    parent = relationship("Item", backref="children")

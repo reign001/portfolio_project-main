@@ -46,7 +46,7 @@ class User(UserMixin, Base):
     Country: Mapped[str] = mapped_column(String(20), nullable=False)
     Password: Mapped[str] = mapped_column(String(20), nullable=False)
     created_at: Mapped[datetime] = mapped_column(default=datetime.today)
-    children = relationship("Item", back_populates="user")
+    orders = relationship("Order", back_populates="user")
     
     
 class Item(Base):
@@ -58,8 +58,7 @@ class Item(Base):
     item_price: Mapped[int] = mapped_column(Integer, nullable=False)
     inserted_at: Mapped[datetime] = mapped_column(default=datetime.today)
     user_id: Mapped[int] = mapped_column(ForeignKey('User.id'))
-    parent = relationship("user", back_populates="children")
-    children = relationship("Order", back_populates="item")
+    #order = relationship("Order", back_populates="items")
     
 
     
@@ -68,12 +67,14 @@ class Order(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     order_name: Mapped[str] = mapped_column(String(50), nullable=False)
     order_price: Mapped[int] = mapped_column(Integer, nullable=False)
+    user_id: Mapped[int] = mapped_column(ForeignKey('User.id'))
     item_id: Mapped[int] = mapped_column(ForeignKey('Item.id'))
-    parent = relationship("Item", backref="children")
+    user = relationship("User", backref="Order")
+    #items = relationship("Item", backref="order")
     
     
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
     #   db.session.add(new_user)
     #   db.session.commit()
 
@@ -193,7 +194,6 @@ def paint():
 @app.route("/gallery", methods=["POST", "GET"])
 def gallery():
     return render_template("gallery.html")
-
 
 
 
