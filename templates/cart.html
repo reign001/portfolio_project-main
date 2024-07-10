@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        .central{
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            width: 700px;
+            height: 600px;
+            margin: auto;
+            background-image: linear-gradient(red, yellow);
+            
+         }
+         .sub_central{
+            display: flex;
+            gap: 20px;
+            width: 680px;
+            height: 580px;
+            margin-bottom: 0;
+
+         }
+         .write_up{
+            width: 50%;
+            height: 90%;
+            margin-top: 20px;
+            margin-left: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+         }
+         .card{
+            width: 50%;
+            height: 70%;
+            margin-top: 70px;
+            
+         }
+         a{
+            display: inline-block;
+            margin-top: 15px;
+            padding-top: 0;
+            padding-left: 50px;
+            text-decoration: none;
+            font-size: 18px;
+         }
+
+         .card{
+            background-color: rgb(187, 187, 221);
+         }
+         .card_form{
+            width: 100%;
+            height: 100%;
+            padding-bottom: 20px;
+            
+         }
+         .card_type{
+            width: 90%;
+            height: 10%;
+            margin: auto;
+            vertical-align: bottom;
+         }
+        img{
+            height: 100%;
+            margin-left: 30px;
+            margin-top: 10px;
+         }
+         input{
+            margin-top: 25px;
+            height: 30px;
+            margin-left: 30px;
+         }
+         #name, #number{
+            width: 230px;
+         }
+         #expire{
+            width: 140px;
+         }
+         #cv{
+            width: 50px;
+         }
+
+         button{
+            padding: 12px;
+            background-color: rgb(100, 100, 139);
+            margin-left: 90px;
+            cursor: pointer;
+            border: none;
+         }
+         .main_card_form p{
+            padding-left: 40px;
+         }
+         button:hover{
+            background-color: rgb(59, 59, 78);
+         }
+         .item{
+            width: 98%;
+            height: 12%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin: auto;
+            display: flex;
+            padding-top: 10px;
+         }
+         .item_image{
+            width: 20%;
+            height: 90%;
+            border: 1px solid gray;
+            
+         }
+         #item_picture{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            margin: 0;
+            padding: 0;
+
+         }
+         .item_detail{
+            width: 78%;
+            height: 90%;
+            
+         }
+         .item_detail p{
+            padding: 0;
+            margin: 0;
+            padding-left: 20px;
+            font-size: 14px;
+            
+         }
+         span{
+            padding-top: 40px;
+            margin-right: 10px;
+            cursor: pointer;
+         }
+
+    </style>
+</head>
+
+<body>
+    <div class="central">
+        <a href="#">&#x2190; Continue Shopping</a>
+        <div class="sub_central">
+            <div class="write_up">
+                <div class="item">
+                    <div class="item_image">
+                        <img id="item_picture" src="static/images/agric.jpg" alt="">
+                    </div>
+                    <div class="item_detail">
+                        <p>Item Name</p>
+                        <p>Item Description</p>
+                        <p>Item Price</p>
+                    </div>
+                    <span>Delete</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_form">
+                    <div class="card_type">
+                        
+                        <img src="/static/images/mastercard.webp" alt="master card">
+                        <img src="/static/images/visa-512.webp" alt="visa card">
+                        <img src="/static/images/paypal-icon.png" alt="pay pal">
+                    </div>
+                    <div class="main_card_form">
+                        <form action="">
+                            <input id="name" type="text" placeholder="Card Holder's Name">
+                            <input id="number" type="number" placeholder="Card Number">
+                            <input id="expire" type="date" placeholder="Expiration">
+                            <input id="cv" type="number" placeholder="CVV">
+                            <p>Subtotal (amount)</p>
+                            <p>Shipping (amount)</p>
+                            <p>Total (+ Tax) (amount) </p>
+                            <button type="submit">Confirm Transaction</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -3,6 +3,10 @@ body{
     height: 550px;
 
 }
+#item{
+    width: 50px;
+    height: 20px;
+}
 
 header{
     background-color: white;

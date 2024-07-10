@@ -112,8 +112,21 @@ def load_user(user_id):
     return db.get_or_404(User, user_id)
 
 
-
-
+@app.route("/delete_form", methods=["DELETE"])
+def delete_form():
+    form = SignUp_Form()
+    if request.method == "DELETE":
+        with app.app_context():
+                request.form.get("First"),
+                request.form.get("Last"),
+                request.form.get("Phone"),
+                request.form.get("Email"),
+                request.form.get("Street"),
+                request.form.get("City"),
+                request.form.get("State"),
+                request.form.get("Country"),
+                request.form.get("Password")
+        return redirect(url_for('login', form=form))
 
 @app.route("/")
 def home():
@@ -138,6 +151,7 @@ def sign_up():
             try:
                 db.session.add(new_user)
                 db.session.commit()
+                delete_form(SignUp_Form)
             except:    
                 print("unsuccessful")
         return redirect(url_for('sign_up'))
@@ -195,6 +209,9 @@ def paint():
 def gallery():
     return render_template("gallery.html")
 
+@app.route('/cart', methods=["POST", "GET"])
+def cart():
+    return render_template("cart.html" )
 
 
 

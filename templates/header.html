@@ -7,7 +7,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/med.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
-    
+    <style>
+
+    </style>
 </head>
 <body>
     <header>
@@ -15,7 +17,7 @@
             <div><b><i>WELCOME TO OUR GALLARY</i></b></div>
         </div>
         <div class="button_div" id="cart_item">
-           {{ items }} 
+           <a id="item" href="{{url_for("cart")}}">Cart{{amout}}</a> 
         </div>
         
     </header>
