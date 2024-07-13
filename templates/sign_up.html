@@ -22,7 +22,9 @@
             <p> {{form.Country.label }} <br>{{form.Country(size=40)}} </p>
             <p> {{ form.Password.label }}<br> {{ form.Password(size=30) }} </p>
             <input id="button" type="submit" value="create account">
-
+        </form>
+        <form method="" action="{{url_for("login")}}">
+        <button id="button" type"submit" >Now Login</button>
         </form>
     </div>
     {% endblock %}

@@ -12,12 +12,13 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 import smtplib
 
 
- 
+#email detail for senders 
+my_email = "artifare@gmail.com"
+my_password = "TTghyrtf4.#"
 
 
 
-
-
+#flask application
 app = Flask(__name__)
 app.secret_key = "Enebo"
 login_manager = LoginManager()
@@ -29,10 +30,11 @@ class Base(DeclarativeBase):
 
 db = SQLAlchemy(model_class=Base)
 
-
+#database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///ARTIFARE.db"
+#database initialization
 db.init_app(app)
-
+#user table 
 class User(UserMixin, Base):
     __tablename__ = "User"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -46,7 +48,7 @@ class User(UserMixin, Base):
     Country: Mapped[str] = mapped_column(String(20), nullable=False)
     Password: Mapped[str] = mapped_column(String(20), nullable=False)
     created_at: Mapped[datetime] = mapped_column(default=datetime.today)
-    orders = relationship("Order", back_populates="user")
+    orders = relationship("Order", back_populates="user", overlaps="orders")
     
     
 class Item(Base):
@@ -90,21 +92,14 @@ class SignUp_Form(FlaskForm):
     Country = StringField(label='country', validators=[DataRequired()])
     Password = PasswordField('Password', [DataRequired()])
   
+def convert_image_to_binary(filename):
+    # Convert digital data to binary format
+    with open(filename, 'rb') as file:
+        item_image = file.read()
+    return item_image
     
     
-#class Login_Form(FlaskForm):
-#     """this is a form for the login page"""
-#     email = EmailField(label='email')
-#     password = PasswordField(label='password')
-
-
- 
-class Market_Form(FlaskForm):
-    """this is a form for the signup page"""
-    image_name = StringField(label='Give your image a name', validators=[DataRequired()])
-    image_type = StringField('Describe your image type') 
-    image_description = TextAreaField('Describe your image', validators=[DataRequired()])
-    upload_image = FileField( validators=[DataRequired()])
+    
 
 # Create a user_loader callback
 @login_manager.user_loader
@@ -112,21 +107,6 @@ def load_user(user_id):
     return db.get_or_404(User, user_id)
 
 
-@app.route("/delete_form", methods=["DELETE"])
-def delete_form():
-    form = SignUp_Form()
-    if request.method == "DELETE":
-        with app.app_context():
-                request.form.get("First"),
-                request.form.get("Last"),
-                request.form.get("Phone"),
-                request.form.get("Email"),
-                request.form.get("Street"),
-                request.form.get("City"),
-                request.form.get("State"),
-                request.form.get("Country"),
-                request.form.get("Password")
-        return redirect(url_for('login', form=form))
 
 @app.route("/")
 def home():
@@ -134,6 +114,7 @@ def home():
     return render_template("landing.html")
 
 @app.route("/sign_up", methods=["GET", "POST"])
+#route for user creation and database insertion
 def sign_up():
     form = SignUp_Form()
     if request.method == "POST":
@@ -151,9 +132,8 @@ def sign_up():
             try:
                 db.session.add(new_user)
                 db.session.commit()
-                delete_form(SignUp_Form)
             except:    
-                print("unsuccessful")
+                print("successful")
         return redirect(url_for('sign_up'))
     return render_template("sign_up.html", form = form)
 
@@ -170,10 +150,10 @@ def login():
             result = db.session.execute(db.select(User).where(User.Email == email))
             user = result.scalar()
         
-          # Check stored password hash against entered password hashed.
+          # Check stored password  against entered password.
         if user.Password == password:
             login_user(user)
-            return redirect(url_for('welcome'))
+        return redirect(url_for('welcome'))
     
     return render_template('login.html')    
     
@@ -182,12 +162,27 @@ def login():
 def welcome():
     return render_template('welcome.html')
 
-@app.route('/market', methods=["POST", "GET"])
+#to get item detail from item table in database
+@app.route("/market", methods=["GET", "POST"])
 def market():
-    market_form = Market_Form()
-    market_form.validate_on_submit()
-    return render_template('market.html', form=market_form)
+    if request.method == "POST":
+        with app.app_context():
+            new_item = Item(
+            item_image = request.form.get("image"),
+            item_name = request.form.get("name"),
+            item_description = request.form.get("description"),
+            item_price = request.form.get("price"))
+            db.session.add(new_item)
+            db.session.commit()
+    return render_template("market.html")
+        
+    
 
+def send_mail():
+    connection = smtplib.SMTP(["smtp.gmail.com", "smtp.live.com", "smtp.mail.yahoo.com"])
+    connection.starttls()
+    connection.login(user=User.Email, password="password")
+    connection.sendmail(from_addr=User.Email, to_addrs=my_email, msg=Item)
 
 
 @app.route('/nature', methods=["POST", "GET"])
@@ -205,13 +200,15 @@ def pencil():
 def paint():
     year_time = datetime.now().year
     return render_template("paint.html")
+#route for gallery
 @app.route("/gallery", methods=["POST", "GET"])
 def gallery():
     return render_template("gallery.html")
 
+#add to cart route
 @app.route('/cart', methods=["POST", "GET"])
 def cart():
-    return render_template("cart.html" )
+    return render_template("cart.html")
 
 
 

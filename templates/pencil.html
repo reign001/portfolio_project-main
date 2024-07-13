@@ -39,21 +39,27 @@ div.desc {
   <a target="_blank" href="img_5terre.jpg">
     <img src="./static/images/nature/img_5terre.jpg" alt="Cinque Terre" width="600" height="400">
   </a>
+  <form action={{url_for('cart')}} method="POST">
   <button id="button" onclick="alert(`image added to cart`);">add to cart</button>
+  </form>
 </div>
 
 <div class="gallery">
   <a target="_blank" href="img_forest.jpg">
     <img src="./static/images/nature/img_forest.jpg" alt="Forest" width="600" height="400">
   </a>
+  <form action={{url_for('cart')}} method="POST">
   <button id="button" onclick="alert(`image added to cart`);">add to cart</button>
+</form>
 </div>
 
 <div class="gallery">
   <a target="_blank" href="img_lights.jpg">
     <img src="./static/images/nature/img_lights.jpg" alt="Northern Lights" width="600" height="400">
   </a>
+  <form action={{url_for('cart')}} method="POST">
   <button id="button" onclick="alert(`image added to cart`);">add to cart</button>
+</form>
 </div>
 
 <div class="gallery">
@@ -61,7 +67,9 @@ div.desc {
     <img src="./static/images/nature/img_mountains.jpg" alt="Mountains" width="600" height="400">
   </a>
   <div>
+    <form action={{url_for('cart')}} method="POST">
     <button id="button" onclick="alert(`image added to cart`);">add to cart</button>
+  </form>
 </div>
 
 </body>

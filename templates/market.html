@@ -10,6 +10,7 @@
     
 </head>
 <body>
+    {% block content %}
     <header>
         <div class="write_up_div">
             <div><b><i>WELCOME TO OUR MARKET</i></b></div>
@@ -19,14 +20,14 @@
     <section class="image_descriptor">
         <br>
         <br>
-        <p>Kindly note that our team of professionals will examine your image to make sure it meets our standard</p>
-        <p>This usually takes 12 to 24 hours. After which your image will be sent our gallery for possible purchase</p>
-        <form method="POST" action="{{ url_for('market') }}" validate>
-            {{ form.csrf_token }}
-            <p> {{ form.image_name.label }} <br> {{ form.image_name(size=30) }} </p>
-            <p> {{ form.image_type.label }} <br>{{ form.image_type(size=30) }} </p>
-            <p> {{form.image_description.label }}<br> {{form.image_description(size=40)}} </p>
-            <p> {{form.upload_image.label }}<br> {{form.upload_image}} </p>
+        <h3>Kindly note that our team of professionals will examine your image to make sure it meets our standard</h3>
+        <h3>This usually takes 12 to 24 hours. After which your image will be sent our gallery for possible purchase</h3>
+        <form method="POST" action="{{ url_for('market') }}" name="ItemForm">
+        
+            <p> <input type="file", placeholder="upload image", name="image"> </p>
+            <p> <input type="text", placeholder="image name", name="name"> </p>
+            <p> <input type="text", placeholder="describe image", name="description"> </p>
+            <p> <input type="text", placeholder="price in words", name="price"> </p>
             <input type="submit" value="send image">
     
         </form>
@@ -39,5 +40,6 @@
         <p>built by John Oloche Okpe</p>
     </footer>
     <script src="{{url_for('static', filename='photo.js')}}"></script>
+    {% endblock%}
 </body>
 </html>

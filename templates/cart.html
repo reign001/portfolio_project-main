@@ -160,7 +160,7 @@
                         <img src="/static/images/paypal-icon.png" alt="pay pal">
                     </div>
                     <div class="main_card_form">
-                        <form action="">
+                        <form method="POST" action="{{ url_for('cart') }}">
                             <input id="name" type="text" placeholder="Card Holder's Name">
                             <input id="number" type="number" placeholder="Card Number">
                             <input id="expire" type="date" placeholder="Expiration">
